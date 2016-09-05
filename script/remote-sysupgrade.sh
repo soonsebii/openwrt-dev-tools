@@ -11,7 +11,7 @@ function abs-path()
 }
 
 BINARY_NAME='openwrt-ramips-mt7628-wrtnode2p-squashfs-sysupgrade.bin'
-BINARY_PATH=$(abs-path) ./bin/ramips/$BINARY_NAME
+BINARY_PATH=$(abs-path ./bin/ramips/$BINARY_NAME)
 
 TARGET_USER='root'
 TARGET_PASS='1234'
@@ -23,7 +23,7 @@ rm -f $HOME/.ssh/known_hosts
 
 echo "[1] copy"
 /usr/bin/expect << EOF
-spawn scp $BINARY $TARGET_USER@$TARGET_ADDR:/$TARGET_TEMP/.
+spawn scp $BINARY_PATH $TARGET_USER@$TARGET_ADDR:/$TARGET_TEMP/.
 expect "connecting" { send "yes\r" }
 expect "password:"  { send "$TARGET_PASS\r"}
 expect eof
